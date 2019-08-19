@@ -16,6 +16,7 @@ import './App.css';
   render() {
     return (
         <div className="App">
+            <h1> list</h1>
             <input type="text" ref={(input) => { this.Input = input; }} />
             <button onClick={this.additem.bind(this)}>BUTTON</button>
             <button onClick={this.minusitem.bind(this)}>MINUS</button>
