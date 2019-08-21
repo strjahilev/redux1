@@ -12,32 +12,21 @@
 // serviceWorker.unregister();
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from "redux";
+import {createStore, applyMiddleware, } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 import App from './App'
 import { Provider } from 'react-redux'
-
+import reducers from './reducers'
 // создание store для приложения
 const add = document.querySelectorAll('.ADD')[0];
 const button = document.querySelectorAll('.buttonadd')[0];
 const list = document.querySelectorAll('.list')[0];
-const start = [
-    'start1', 'start2'
-];
-function f(state=start, action) {
-    if (action.type === 'ADD'){
-        return [
-            ...state, action.payload
-        ]
-    }
-    if (action.type === 'MINUS'){
-        return [
-            ...state, action.payload
-        ]
-    }
-    // console.log (action);
-    return state;
-}
-const store = createStore(f);
+
+
+
+
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 //subscribe реагирут на изменение store
 // store.subscribe(()=>{
 //     list.innerHTML = '';
